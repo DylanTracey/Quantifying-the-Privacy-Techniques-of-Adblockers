@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Mwah ha ha!</title>
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container">
+    {% if cookie_id %}
+        I am a third party from {{ current_url }}.
+        You are being tracked via ID: {{ cookie_id }}!<br><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Recently visited websites:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history_log %}
+                    <tr>
+                        <th scope="row">
+                            <a href="{{ entry.site }}" target="_blank">{{ entry.site }}</a>
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        I am a third party from {{ current_url }}.<br>
+        Trying to set a cookie to track you!
+    {% endif %}
+    </div>
+{% endblock %}

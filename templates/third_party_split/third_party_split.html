@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Mwah ha ha!</title>
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+    {% if cookie_id %}
+        I am a third party from {{ current_url }}. You are being tracked via ID: {{ cookie_id }}!
+    {% else %}
+        I am a third party from {{ current_url }}. Trying to set a cookie to track you!
+    {% endif %}
+    <br>
+    <br>
+    {% if cookie_id %}
+        <iframe src="{{ urls.TP_MASTER_URL }}tp-master/{{ config_id }}/{{ index }}/safe_referer?id={{ safe_referer }}" style="position: relative;
+        height: 200px; width: 95%; top: 0%; right: 2.5%; left: 2.5%;">
+        </iframe>
+    {% endif %}
+{% endblock %}

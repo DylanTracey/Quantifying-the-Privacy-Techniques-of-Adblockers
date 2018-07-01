@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>
+        {% if mode != "7" %}
+            Benchmarking: Mode {{ mode }} - {{ progress }}%
+        {% else %}
+            Benchmark Complete
+        {% endif %}
+    </title>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container">
+        <div class="card card-body bg-light" style="position: relative;">
+
+            {% if mode  == "1" %}
+                Mode 1 - First Party Only Tracking<br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{ progress|int }}%">
+                    {{ progress }}%
+                  </div>
+                </div>
+            {% endif %}
+            {% if user.first_party_test_result == "SUCCESS!" %}
+                Mode 1 - First Party Only Tracking<br>
+                Success! First Party sites are able to track you via their own cookies<br><br>
+            {% endif %}
+            {% if user.first_party_test_result == "FAILURE!" %}
+                Mode 1 - First Party Only Tracking<br>
+                Failure! First Party sites are not able to track you via their own cookies<br><br>
+            {% endif %}
+
+
+            {% if mode  == "2" %}
+                Mode 2 - Third Party Single Cookie Tracking<br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{ progress|int }}%">
+                    {{ progress }}%
+                  </div>
+                </div>
+            {% endif %}
+            {% if user.third_party_test_result == "SUCCESS!" %}
+                Mode 2 - Third Party Single Cookie Tracking<br>
+                Success! Third Party sites are able to track you via their cookies between first party domains<br><br>
+            {% endif %}
+            {% if user.third_party_test_result == "FAILURE!" %}
+                Mode 2 - Third Party Single Cookie Tracking<br>
+                Failure! Third Party sites are not able to track you via their cookies between first party domains<br><br>
+            {% endif %}
+
+
+            {% if mode  == "3" %}
+                Mode 3 - Third Party Split Cookie Tracking<br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{ progress|int }}%">
+                    {{ progress }}%
+                  </div>
+                </div>
+            {% endif %}
+            {% if user.third_party_split_result == "SUCCESS!" %}
+                Mode 3 - Third Party Split Cookie Tracking<br>
+                Success! A Third Party Host-Slave domain set up is able to track you via their cookies between first party domains<br><br>
+            {% endif %}
+            {% if user.third_party_split_result == "FAILURE!" %}
+                Mode 3 - Third Party Split Cookie Tracking<br>
+                Failure! A Third Party Host-Slave domain set up is not able to track you via their cookies between first party domains<br><br>
+            {% endif %}
+
+
+            {% if mode  == "4" %}
+                Mode 4 - Third Party Chained Cookie Tracking<br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{ progress|int }}%">
+                    {{ progress }}%
+                  </div>
+                </div>
+            {% endif %}
+            {% if user.third_party_split_chain_result == "SUCCESS!" %}
+                Mode 4 - Third Party Chained Cookie Tracking<br>
+                Success! A Third Party chained domain set up is able to track you via their cookies between first party domains<br><br>
+            {% endif %}
+            {% if user.third_party_split_chain_result == "FAILURE!" %}
+                Mode 4 - Third Party Chained Cookie Tracking<br>
+                Failure! A Third Party chained domain set up is not able to track you via their cookies between first party domains<br><br>
+            {% endif %}
+
+
+            {% if mode  == "5" %}
+                Mode 5 - HTML5 LocalStorage Super Cookie Tracking (Third Party)<br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{ progress|int }}%">
+                    {{ progress }}%
+                  </div>
+                </div>
+            {% endif %}
+            {% if user.third_party_super_cookie_result == "SUCCESS!" %}
+                Mode 5 - HTML5 LocalStorage Super Cookie Tracking (Third Party)<br>
+                Success! Third Party HTML5 LocalStorage Super Cookies are able to track you between first party domains<br><br>
+            {% endif %}
+            {% if user.third_party_super_cookie_result == "FAILURE!" %}
+                Mode 5 - HTML5 LocalStorage Super Cookie Tracking (Third Party)<br>
+                Failure! Third Party HTML5 LocalStorage Super Cookies are not able to track you between first party domains<br><br>
+            {% endif %}
+
+
+            {% if mode  == "6" %}
+                Mode 6 - HTML5 LocalStorage Chained Super Cookie Tracking (Third Party)<br>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}"
+                  aria-valuemin="0" aria-valuemax="100" style="width:{{ progress|int }}%">
+                    {{ progress }}%
+                  </div>
+                </div>
+            {% endif %}
+            {% if user.third_party_split_super_cookie_result == "SUCCESS!" %}
+                Mode 6 - HTML5 LocalStorage Chained Super Cookie Tracking (Third Party)<br>
+                Success! A Third Party HTML5 LocalStorage chained super cookie is able to track you between first party domains<br><br>
+            {% endif %}
+            {% if user.third_party_split_super_cookie_result == "FAILURE!" %}
+                Mode 6 - HTML5 LocalStorage Chained Super Cookie Tracking (Third Party)<br>
+                Failure! A Third Party HTML5 LocalStorage chained super cookie is able to track you between first party domains<br><br>
+            {% endif %}
+
+
+            {% if mode  == "7" %}
+                <h3> BENCHMARK COMPLETED</h3><br>
+                The Results for each of the modes has been updated and will be saved in the configuartion page.<br>
+                Click a link on the navigation bar to proceed.
+
+            {% endif %}
+
+
+            <br>
+            <br>
+            <iframe src="{{ first_party_site }}"
+                    style="position:absolute;right:0px;bottom:0px;height:1px;width:1px;"></iframe>
+
+            <script type="text/javascript">
+                window.onload = function () {
+                    if ({{ mode }} != "7") {
+                        var next_site = '{{ next_site }}';
+                        setTimeout(function () {
+                            window.location = next_site;
+                        }, 3000);
+                    }
+                };
+            </script>
+            <noscript>
+                <meta http-equiv="refresh" content="10;url={{ next_site }}">
+            </noscript>
+        </div>
+    </div>
+
+{% endblock %}

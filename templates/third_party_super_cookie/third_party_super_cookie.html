@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Mwah ha ha!</title>
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container">
+        <script type="text/javascript">
+            window.onload = function () {
+                test = localStorage.getItem("u");
+                if (test === null) {
+                    var possible = "0123456789";
+                    var text = "";
+                    for (var i = 0; i < {{ config_cookie_length }}; i++)
+                        {#  https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript   #}
+                        text += possible.charAt(Math.floor(Math.random() * possible.length));
+                    localStorage.setItem("u", text);
+                }
+                var next_site = '{{ next_site }}/' + localStorage.getItem("u") + '/safe-referer?id=' + '{{ safe_referer }}';
+                setTimeout(function () {
+                    window.location = next_site;
+                }, 1000);
+            };
+        </script>
+    <h1>EVIL REDIRECT (can be ajax call)</h1>
+    </div>
+{% endblock %}

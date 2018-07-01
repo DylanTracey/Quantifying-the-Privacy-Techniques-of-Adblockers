@@ -1,0 +1,30 @@
+{% extends "first_party/first_party_only.html" %}
+
+{% block title %}
+    <title>HTML5 localStorage Chained Super Cookie Tracking</title>
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    <div class="container">
+        <div class="card card-body bg-light" style="position: relative;">
+
+            <p>
+                {% if fp_cookie_id %}
+                    Our first party cookie is tracking you as is expected.
+                    You are being tracked via ID: {{ fp_cookie_id }}
+                {% else %}
+                    We are attempting to track you, but we are a first party website so this is expected.
+                {% endif %}
+            </p>
+
+            {% block content %}
+                <iframe src="{{ urls.TP_SPLIT_SUPER_URL_1 }}tp-split-super-chain-1/{{ config_id }}"
+                        style="position:relative; width: 100%; height: 600px;">
+                </iframe>
+            {% endblock %}
+
+        </div>
+    </div>
+{% endblock %}

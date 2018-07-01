@@ -1,0 +1,7 @@
+Flask==0.12.1
+WTForms==2.1
+Flask-WTF==0.14.2
+Flask-SQLAlchemy==2.3.2
+redis==2.10.6
+
+# FIRST PARTY MULTIPLE PAGES, HELP PAGES  -----> WEB BEACONS, PROBABILITY TRACKING

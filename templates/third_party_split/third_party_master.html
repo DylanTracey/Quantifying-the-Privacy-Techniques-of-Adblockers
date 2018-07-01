@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Master Tracker</title>
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+    {% if trackable %}
+        I can track you as unique ID: {{ uuid }} in this sub-frame!<br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Recently visited websites:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in history_log %}
+                    <tr>
+                        <th scope="row">
+                            <a href="{{ entry.site }}" target="_blank">{{ entry.site }}</a>
+                        </th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        I'm not tracking you in this sub-frame.
+    {% endif %}
+{% endblock %}

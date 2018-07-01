@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Malicious First Party Link Shimming</title>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container">
+        <div class="card card-body bg-light" style="position: relative; height: 600px">
+            <p>
+                {% if fp_cookie_id %}
+                    Our first party cookie is tracking you as is expected.
+                    You are being tracked via ID: {{ fp_cookie_id }}
+                {% else %}
+                    We are attempting to track you, but we are a first party website so this is expected.
+                {% endif %}
+            </p>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Recently link clicked websites:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in history_log %}
+                        <tr>
+                            <th scope="row">
+                                <a href="{{ entry.site }}" target="_blank">{{ entry.site }}</a>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">AdblockTester</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if config_id %}
+                    <li class="nav-item">
+                        <a id="fp-link-1" class="nav-link" href="{{ url_malicious }}{{ config_id }}/u?id={{ url_fp1 | quote }}"
+                           data-lynx-uri="{{ url_fp1 }}">
+                            First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="fp-link-2" class="nav-link" href="{{ url_malicious }}{{ config_id }}/u?id={{ url_fp2 | quote }}"
+                           data-lynx-uri="{{ url_fp2 }}">
+                            First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="fp-link-3" class="nav-link" href="{{ url_malicious }}{{ config_id }}/u?id={{ url_fp3 | quote }}"
+                           data-lynx-uri="{{ url_fp3 }}">
+                            First Party Site 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_MALICIOUS_1 }}fp-malicious-1/{{ config_id }}">Malicious First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_MALICIOUS_2 }}fp-malicious-2/{{ config_id }}">Malicious First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_MALICIOUS_3 }}fp-malicious-3/{{ config_id }}">Malicious First Party Site 3</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">First Party Site 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">Malicious First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">Malicious First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">Malicious First Party Site 3</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ urls.CONFIG_URL }}">Configuration</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <script type="text/javascript">
+        function replaceURI(link_id) {
+            var new_uri = document.getElementById(link_id).href;
+            var new_href = document.getElementById(link_id).getAttribute("data-lynx-uri");
+            document.getElementById(link_id).setAttribute("data-lynx-uri", new_uri);
+            document.getElementById(link_id).setAttribute("href", new_href);
+            return false;
+        }
+
+        document.getElementById("fp-link-1").onmouseover = function() {
+            replaceURI("fp-link-1");
+        };
+        document.getElementById("fp-link-1").onmouseout = function() {
+            replaceURI("fp-link-1");
+        };
+        document.getElementById("fp-link-1").onclick = function() {
+            replaceURI("fp-link-1");
+        };
+
+        document.getElementById("fp-link-2").onmouseover = function() {
+            replaceURI("fp-link-2");
+        };
+        document.getElementById("fp-link-2").onmouseout = function() {
+            replaceURI("fp-link-2");
+        };
+        document.getElementById("fp-link-2").onclick = function() {
+            replaceURI("fp-link-2");
+        };
+
+        document.getElementById("fp-link-3").onmouseover = function() {
+            replaceURI("fp-link-3");
+        };
+        document.getElementById("fp-link-3").onmouseout = function() {
+            replaceURI("fp-link-3");
+        };
+        document.getElementById("fp-link-3").onclick = function() {
+            replaceURI("fp-link-3");
+        };
+
+    </script>
+
+{% endblock %}

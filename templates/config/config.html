@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Configuration</title>
+{% endblock %}
+
+{% block body %}
+    <br>
+        <div class="container" >
+            <div class="card card-body bg-light" style="position: relative;">
+                <h3>Currently set to tracking mode {{ user.mode }}. Submit below to change configuration</h3>
+                <form method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.tracker }}
+                    {{ form.first_party_cookie_size.label }}
+                    {{ form.first_party_cookie_size }}
+                    <ul>
+                    {% for message in form.first_party_cookie_size.errors %}
+                        <li style="color:#ff7069;"><b>{{ message }}</b></li>
+                    {% endfor %}
+                    </ul>
+                    {{ form.cookie_size.label }}
+                    {{ form.cookie_size }}
+                    <ul>
+                    {% for message in form.cookie_size.errors %}
+                        <li style="color:#ff7069;"><b>{{ message }}</b></li>
+                    {% endfor %}
+                    </ul>
+                    {{ form.split_cookie_size.label }}
+                    {{ form.split_cookie_size }}
+                    <ul>
+                    {% for message in form.split_cookie_size.errors %}
+                        <li style="color:#ff7069; "><b>{{ message }}</b></li>
+                    {% endfor %}
+                    </ul>
+                    {{ form.local_storage_super_cookie_size.label }}
+                    {{ form.local_storage_super_cookie_size }}
+                    <ul>
+                    {% for message in form.local_storage_super_cookie_size.errors %}
+                        <li style="color:#ff7069; "><b>{{ message }}</b></li>
+                    {% endfor %}
+                    </ul>
+                    {{ form.local_storage_split_super_cookie_size.label }}
+                    {{ form.local_storage_split_super_cookie_size }}
+                    <ul>
+                    {% for message in form.local_storage_split_super_cookie_size.errors %}
+                        <li style="color:#ff7069; "><b>{{ message }}</b></li>
+                    {% endfor %}
+                    </ul>
+
+                    <input type="submit">
+                </form>
+
+                <br>
+                <br>
+                <h3>Recent Benchmark Results: </h3>
+                Mode 1 = {{ user.first_party_test_result }} </br>
+                Mode 2 = {{ user.third_party_test_result }} </br>
+                Mode 3 = {{ user.third_party_split_result }} </br>
+                Mode 4 = {{ user.third_party_split_chain_result }} </br>
+                Mode 5 = {{ user.third_party_super_cookie_result }} </br>
+                Mode 6 = {{ user.third_party_split_super_cookie_result }} </br>
+                <br>
+
+                <a href="{{ urls.CONFIG_URL }}start-benchmark"><button>Run/Rerun Benchmark</button></a>
+            </div>
+        </div>
+{% endblock %}

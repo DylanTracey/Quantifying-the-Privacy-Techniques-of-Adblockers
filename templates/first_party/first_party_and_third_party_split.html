@@ -1,0 +1,27 @@
+{% extends "first_party/first_party_and_third_party.html" %}
+
+{% block title %}
+    <title>Split Cookie Tracking</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="modal-body row">
+        <div class="col-md-6">
+            <iframe src="{{ urls.TP_SPLIT_URL_1 }}tp-split-1/{{ config_id }}"
+                    style="position:relative; width: 100%; height: 300px;">
+            </iframe>
+            <iframe src="{{ urls.TP_SPLIT_URL_3 }}tp-split-3/{{ config_id }}"
+                    style="position:relative; width: 100%; height: 300px;">
+            </iframe>
+        </div>
+        <div class="col-md-6">
+            <iframe src="{{ urls.TP_SPLIT_URL_2 }}tp-split-2/{{ config_id }}"
+                    style="position:relative; width: 100%; height: 300px;">
+            </iframe>
+            <iframe src="{{ urls.TP_SPLIT_URL_4 }}tp-split-4/{{ config_id }}"
+                    style="position:relative; width: 100%; height: 300px;">
+            </iframe>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>First Party Only Tracking</title>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container" >
+        <div class="card card-body bg-light" style="position: relative; height: 600px">
+            <p>
+                {% if fp_cookie_id %}
+                    Our first party cookie is tracking you as is expected.
+                    You are being tracked via ID: {{ fp_cookie_id }}
+                {% else %}
+                    We are attempting to track you, but we are a first party website so this is expected.
+                {% endif %}
+            </p>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Recently visited websites:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in history_log %}
+                        <tr>
+                            <th scope="row">
+                                <a href="{{ entry.site }}" target="_blank">{{ entry.site }}</a>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

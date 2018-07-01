@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block title %}
+        <title>AdblockTester</title>
+    {% endblock %}
+
+</head>
+<body>
+{% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">AdblockTester</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if config_id %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_1 }}fp-1/{{ config_id }}">First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_2 }}fp-2/{{ config_id }}">First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_3 }}fp-3/{{ config_id }}">First Party Site 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_MALICIOUS_1 }}fp-malicious-1/{{ config_id }}">Malicious
+                            First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_MALICIOUS_2 }}fp-malicious-2/{{ config_id }}">Malicious
+                            First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.FP_URL_MALICIOUS_3 }}fp-malicious-3/{{ config_id }}">Malicious
+                            First Party Site 3</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">First Party Site 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">Malicious First Party Site 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">Malicious First Party Site 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ urls.CONFIG_URL }}">Malicious First Party Site 3</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ urls.CONFIG_URL }}">Configuration</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+{% endblock %}
+{% block body %}
+{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+
+</body>
+</html>
