@@ -6,7 +6,7 @@ import redis
 
 DEBUG = os.environ['APPLICATION_CONFIGURATION'] == 'app_config.DevConfig'
 
-r = redis.Redis(host='adblockCache.redis.cache.windows.net', port='6380',
+r = redis.Redis(host='adblock-benchmark-cache.redis.cache.windows.net', port='6380',
                 password=os.environ['REDIS_KEY'], ssl=True) if DEBUG is False else redis.Redis('localhost')
 
 
