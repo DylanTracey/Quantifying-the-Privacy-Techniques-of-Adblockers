@@ -22,6 +22,13 @@ THIRD_PARTY_CHAIN_MASTER_TEMPLATE = 'third_party_split/third_party_chain_master.
 
 @tp_sc.route('/tp-super-cookie-data/<config_id>/<uuid>/safe-referer')
 def tp_super_cookie_data(config_id, uuid):
+    """
+    Iframed website that is redirected into from the function below. This gets the UUID from the URL parameter and
+    creates a history log for this UUID.
+
+    :param uuid: Generated client side, this supercookie identifies the user.
+    :return: HTTP response which displays the history log for this perceived user
+    """
     check_referer(request, URLS['TP_SUPER_COOKIE_URL'])
     trackable_user = JoinedTrackableUUID.get_or_create(uuid)
 
@@ -39,9 +46,17 @@ def tp_super_cookie_data(config_id, uuid):
 
 @tp_sc.route('/tp-super-cookie/<config_id>')
 def tp_super_cookie(config_id):
+    """
+    Iframed website by the first party which in its client side template, generates a super cookie (by localStorage).
+    It then redirects to the view function above which records the user with this client side UUID.
+
+    :return: HTTP response which generates a localStorage super cookie if not already set via javascipt (see the
+    template) and then redirects to a new URL to transfer this client side cookie to server side.
+    """
     check_referer(request, URLS['TP_SUPER_COOKIE_URL'])
     config_cookie_length = implicit_user_login(User, config_id).local_storage_super_cookie_size
 
+    # The site to redirect to.
     next_site = URLS['TP_SUPER_COOKIE_URL'] + 'tp-super-cookie-data/' + config_id
 
     safe_referer = quote(request.referrer)
@@ -50,6 +65,9 @@ def tp_super_cookie(config_id):
         render_template(THIRD_PARTY_SUPER_COOKIE_TEMPLATE, current_url=request.url_root, next_site=next_site,
                         safe_referer=safe_referer, config_cookie_length=config_cookie_length))
     return response
+
+# The functions below combines the chained views in third_party_split package, and the two view functions above to
+# user super cookie tracking for segmented chunks as in mode 4.
 
 
 @tp_sc.route('/tp-split-super-chain-1-data/<config_id>/<uuid>/safe-referer')

@@ -2,6 +2,9 @@ from base_models import db, BaseUUID, BaseHistory
 
 
 class FirstPartyUUID(BaseUUID):
+    """
+    Unique users that the first party sites keep track of via a unique identifier (cookie)
+    """
     __tablename__ = 'firstpartyUUID'
     visited = db.relationship('FirstPartyHistory', backref='firstpartyUUID', lazy=True, cascade='all,delete')
 
@@ -15,6 +18,9 @@ class FirstPartyUUID(BaseUUID):
 
 
 class FirstPartyHistory(BaseHistory):
+    """
+    History log table that creates logs of the visited sites for each user identifier (model above)
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('firstpartyUUID.id'), nullable=False)
     visitor = db.relationship(FirstPartyUUID)
 
@@ -23,6 +29,10 @@ class FirstPartyHistory(BaseHistory):
 
 
 class FirstPartyClickHistory(BaseHistory):
+    """
+    For the malicious first party sites, this creates a log of the recently clicked external sites for each
+    user identifier
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('firstpartyUUID.id'), nullable=False)
     visitor = db.relationship(FirstPartyUUID)
 

@@ -2,6 +2,10 @@ from base_models import db, BaseUUID
 
 
 class User(BaseUUID):
+    """
+    Model which represents a user looking to test their browser/adblocker configuration. The results of most recent
+    benchmark, as well as the selected mode/cookie size preferences are stored per user.
+    """
     mode = db.Column(db.String(1), default='1', nullable=False)
     first_party_cookie_size = db.Column(db.Integer, default=16, nullable=False)
     cookie_size = db.Column(db.Integer, default=16, nullable=False)

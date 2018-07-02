@@ -21,6 +21,9 @@ class SplitTrackableUUIDBase(BaseUUID):
 
 
 class SplitTrackableUUID1(SplitTrackableUUIDBase):
+    """
+    A table for the first segment of the cookie
+    """
     __tablename__ = 'splitTrackableUUID1'
     visited = db.relationship('SplitHistoryBase1', backref='splitTrackableUUID1', lazy=True)
 
@@ -29,6 +32,9 @@ class SplitTrackableUUID1(SplitTrackableUUIDBase):
 
 
 class SplitTrackableUUID2(SplitTrackableUUIDBase):
+    """
+    A table for the second segment of the cookie
+    """
     __tablename__ = 'splitTrackableUUID2'
     visited = db.relationship('SplitHistoryBase2', backref='splitTrackableUUID2', lazy=True)
 
@@ -37,6 +43,9 @@ class SplitTrackableUUID2(SplitTrackableUUIDBase):
 
 
 class SplitTrackableUUID3(SplitTrackableUUIDBase):
+    """
+    A table for the third segment of the cookie
+    """
     __tablename__ = 'splitTrackableUUID3'
     visited = db.relationship('SplitHistoryBase3', backref='splitTrackableUUID3', lazy=True)
 
@@ -45,6 +54,9 @@ class SplitTrackableUUID3(SplitTrackableUUIDBase):
 
 
 class SplitTrackableUUID4(SplitTrackableUUIDBase):
+    """
+    A table for the fourth segment of the cookie
+    """
     __tablename__ = 'splitTrackableUUID4'
     visited = db.relationship('SplitHistoryBase4', backref='splitTrackableUUID4', lazy=True)
 
@@ -53,6 +65,9 @@ class SplitTrackableUUID4(SplitTrackableUUIDBase):
 
 
 class SplitHistoryBase1(BaseHistory):
+    """
+    A history log for the first segment of the cookie
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('splitTrackableUUID1.id'), nullable=False)
     visitor = db.relationship(SplitTrackableUUID1)
 
@@ -61,6 +76,9 @@ class SplitHistoryBase1(BaseHistory):
 
 
 class SplitHistoryBase2(BaseHistory):
+    """
+    A history log for the second segment of the cookie
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('splitTrackableUUID2.id'), nullable=False)
     visitor = db.relationship(SplitTrackableUUID2)
 
@@ -69,6 +87,9 @@ class SplitHistoryBase2(BaseHistory):
 
 
 class SplitHistoryBase3(BaseHistory):
+    """
+    A history log for the third segment of the cookie
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('splitTrackableUUID3.id'), nullable=False)
     visitor = db.relationship(SplitTrackableUUID3)
 
@@ -77,6 +98,9 @@ class SplitHistoryBase3(BaseHistory):
 
 
 class SplitHistoryBase4(BaseHistory):
+    """
+    A history log for the fourth segment of the cookie
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('splitTrackableUUID4.id'), nullable=False)
     visitor = db.relationship(SplitTrackableUUID4)
 
@@ -85,6 +109,10 @@ class SplitHistoryBase4(BaseHistory):
 
 
 class JoinedTrackableUUID(BaseUUID):
+    """
+    After joining the four segments of the cookie together, this creates a user based on that string. Used by the
+    master URL and the final chained URL.
+    """
     __tablename__ = 'joinedTrackableUUID'
     visited = db.relationship('JoinedHistory', backref='joinedTrackableUUID', lazy=True, cascade='all,delete')
 
@@ -105,6 +133,10 @@ class JoinedTrackableUUID(BaseUUID):
 
 
 class JoinedHistory(BaseHistory):
+    """
+    A history log for the joined segments of the cookie (the user in the model above) which tracks the recently visited
+    sites.
+    """
     visitor_id = db.Column(db.Integer, db.ForeignKey('joinedTrackableUUID.id'), nullable=False)
     visitor = db.relationship(JoinedTrackableUUID)
 

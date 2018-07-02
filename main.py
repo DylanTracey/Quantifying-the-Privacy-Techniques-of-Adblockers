@@ -28,6 +28,9 @@ app.register_blueprint(tp_sc)
 
 @app.route('/')
 def entry():
+    """
+    The main entry for the sites redirects to the home page for each of the first party sites and the config page
+    """
     if request.url_root == URLS['FP_URL_1']:
         return redirect(url_for('fp.fp_1'))
     if request.url_root == URLS['FP_URL_2']:

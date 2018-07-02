@@ -21,8 +21,14 @@ def redis_retrieve_join(ip, site):
 
 
 def redis_set_benchmark_recent_site(config_id, mode, site):
+    """
+    Caches the benchmark recently made history log entry for the mode being benchmarked.
+    """
     r.set(config_id + '-' + mode, site, ex=60)
 
 
 def redis_get_benchmark_recent_site(config_id, mode):
+    """
+    Gets the cached benchmark recently made history log entry for the mode required.
+    """
     return r.get(config_id + '-' + mode)

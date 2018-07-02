@@ -6,10 +6,11 @@ import redis
 
 DEBUG = os.environ['APPLICATION_CONFIGURATION'] == 'app_config.DevConfig'
 
+# Uses the correct Redis cache depending on whether it is used on a debugging local environment, or the live website
 r = redis.Redis(host='adblock-benchmark-cache.redis.cache.windows.net', port='6380',
                 password=os.environ['REDIS_KEY'], ssl=True) if DEBUG is False else redis.Redis('localhost')
 
-
+# Sets up the correct URLs to use based on a debugging local environment, or the live website
 URLS = {
     'FP_URL_1': 'http://adblocktester1.tk/' if DEBUG is False else 'http://local.adblocktester1:5000/',
     'FP_URL_2': 'http://adblocktester2.tk/' if DEBUG is False else 'http://local.adblocktester2:5000/',

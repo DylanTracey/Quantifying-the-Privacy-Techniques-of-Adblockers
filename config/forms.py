@@ -6,6 +6,15 @@ from settings import TRACKING_MODES
 
 
 class TrackerForm(FlaskForm):
+    """
+    The form to customize what the user wants the tracking to function like. You can specify the tracking mode (for
+    manual testing via the navigation bar), and the related unique identifier cookie sizes (how long the string is) for
+    each of the modes.
+
+    For instance if the user sets the tracking mode to 2, and the cookie_size parameter to 32; clicking on the first
+    party sites will user tracking mode 2 (third party tracking) and the unique identifier will be a string of 32
+    characters.
+    """
     tracker = RadioField('Tracker Options',
                          choices=[('1', TRACKING_MODES['1']),
                                   ('2', TRACKING_MODES['2']),
