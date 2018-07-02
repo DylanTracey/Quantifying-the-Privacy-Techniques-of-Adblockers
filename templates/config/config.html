@@ -8,6 +8,7 @@
     <br>
         <div class="container" >
             <div class="card card-body bg-light" style="position: relative;">
+                {# Diplays each part of the form as well as errors if the user typed wrong values into the form#}
                 <h3>Currently set to tracking mode {{ user.mode }}. Submit below to change configuration</h3>
                 <form method="post">
                     {{ form.hidden_tag() }}

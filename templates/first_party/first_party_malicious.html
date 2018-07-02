@@ -104,6 +104,8 @@
     </nav>
 
     <script type="text/javascript">
+    {#    Changes the href external link between that saved in the data-lynx-uri. Thus if hovered over the external
+    link looks legitimate, even though when clicked on the link shimmed version will be used. #}
         function replaceURI(link_id) {
             var new_uri = document.getElementById(link_id).href;
             var new_href = document.getElementById(link_id).getAttribute("data-lynx-uri");

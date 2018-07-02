@@ -13,6 +13,8 @@
 {% block body %}
     <br>
     <div class="container">
+    {#    Displays each mode of the benchmark and its progess in the inner loop, or if completed,
+    the modes benchmark result#}
         <div class="card card-body bg-light" style="position: relative;">
 
             {% if mode  == "1" %}
@@ -143,6 +145,8 @@
                     style="position:absolute;right:0px;bottom:0px;height:1px;width:1px;"></iframe>
 
             <script type="text/javascript">
+            {# Redirects to the next website in the benchmark loop after 3 seconds. Stops redirecting if mode 7 (as the
+             benchmark has thus been completed).#}
                 window.onload = function () {
                     if ({{ mode }} != "7") {
                         var next_site = '{{ next_site }}';
@@ -152,9 +156,6 @@
                     }
                 };
             </script>
-            <noscript>
-                <meta http-equiv="refresh" content="10;url={{ next_site }}">
-            </noscript>
         </div>
     </div>
 
