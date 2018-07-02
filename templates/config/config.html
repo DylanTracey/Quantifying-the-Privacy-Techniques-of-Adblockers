@@ -55,12 +55,176 @@
                 <br>
                 <br>
                 <h3>Recent Benchmark Results: </h3>
-                Mode 1 = {{ user.first_party_test_result }} </br>
-                Mode 2 = {{ user.third_party_test_result }} </br>
-                Mode 3 = {{ user.third_party_split_result }} </br>
-                Mode 4 = {{ user.third_party_split_chain_result }} </br>
-                Mode 5 = {{ user.third_party_super_cookie_result }} </br>
-                Mode 6 = {{ user.third_party_split_super_cookie_result }} </br>
+                <br>
+                <div class="input-group">
+                    Mode 1 = {{ user.first_party_test_result }}
+                   <span style="padding-left: 20px" class="input-group-btn">
+                        <button data-toggle="modal"
+                        data-target="#mode1">Learn about this tracking mode</button>
+                        <div class="modal fade" id="mode1" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">First Party Only Tracking</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>In this tracking mode, only first party cookies are set (for the current
+                                        base domain name you are on). Therefore, there is no cross-site tracking
+                                        performed between different first party sites. Only sites controlled by the
+                                        first party domain you are on can be logged. This is expected behavior
+                                        of first party sites and therefore these cookies should be allowed to be
+                                        set by the browser. If your adblocker/browser configuration isn't allowing
+                                        this tracking to succeed - functionality of the browser might be compromised</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </span>
+                </div>
+                <br>
+                <div class="input-group">
+                    Mode 2 = {{ user.third_party_test_result }}
+                   <span style="padding-left: 20px" class="input-group-btn">
+                        <button data-toggle="modal"
+                        data-target="#mode2">Learn about this tracking mode</button>
+                        <div class="modal fade" id="mode2" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Third Party Single Cookie Tracking</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This is the traditional way to track users between first party sites.
+                                        A third party site is thus iframed in and can create a history log to cross-site
+                                        track your browsing habits. By using the HTTP referer header tag, this third
+                                        party website can get the originating first party domain. Then, via the cookie
+                                        it can uniquely identify the user. These two fields are all that is needed to
+                                        populate a history log table. This behavior is unwanted if privacy is
+                                        a concern. Thus, this type of tracking should be blocked.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </span>
+                </div>
+                <br>
+                <div class="input-group">
+                    Mode 3 = {{ user.third_party_split_result }}
+                   <span style="padding-left: 20px" class="input-group-btn">
+                        <button data-toggle="modal"
+                        data-target="#mode3">Learn about this tracking mode</button>
+                        <div class="modal fade" id="mode3" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Third Party Split Cookie Tracking</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This is a way to bypass Privacy Badgers cookie deletion heuristic (three
+                                            single digit value cookies maximum for each domain).
+                                        First a unique identifier is split into four different segments. Each
+                                        segment is then set as a cookie for four separate third party domains that
+                                        are iframed in. Then, these third party iframes further iframe in a master
+                                        third party website which combines these cookie segments into a long single
+                                        cookie that is high enough entropy to distinguish between users. As the cookie
+                                        is split up into low entropy parts before being set, it appears none tracking.
+                                        However, deceptively the combination of these smaller cookies into a long string
+                                        means this can still uniquely identify the user.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </span>
+                </div>
+                <br>
+                <div class="input-group">
+                    Mode 4 = {{ user.third_party_split_chain_result }}
+                   <span style="padding-left: 20px" class="input-group-btn">
+                        <button data-toggle="modal"
+                        data-target="#mode4">Learn about this tracking mode</button>
+                        <div class="modal fade" id="mode4" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Third Party Chained Cookie Tracking</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Very similar to Mode 3, this method also splits a longer high entropy cookie
+                                        into segments. However, rather then using four seperate iframes. The first party
+                                        site only iframes in the first third party website (which sets the first segment
+                                        cookie). Then, this third party website iframes in the second third party
+                                        website (which
+                                        sets the second segment cookie); then it combines the first segment (from a URL
+                                        parameter it was called with) with the second segment to get a combined
+                                        identifier. This
+                                        chained iframe process where we keep on appending segments onto the current
+                                        string happens until the combined identifier is long
+                                        enough to uniquely identify the user. This also bypasses Privacy Badgers cookie
+                                        deletion heuristic.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </span>
+                </div>
+                <br>
+                <div class="input-group">
+                    Mode 5 = {{ user.third_party_super_cookie_result }}
+                   <span style="padding-left: 20px" class="input-group-btn">
+                        <button data-toggle="modal"
+                        data-target="#mode5">Learn about this tracking mode</button>
+                        <div class="modal fade" id="mode5" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Third Party Local Storage Super Cookie Tracking</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>In this tracking mode, localStorage is used on the client side javascript
+                                        on the iframed third party website to generate a unique identifying string.
+                                        This then redirects (can also be AJAX in practise) to a different third party
+                                        URL which via a URL parameter can retrieve the unique identifying string.
+                                        Therefore, the localStorage cookie is transferred from the client to the server
+                                        side and can be used to track the user. As mobile phones often don't work
+                                        with traditional cookie tracking, this is an excellent option to track these
+                                        types of users.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </span>
+                </div>
+                <br>
+                <div class="input-group">
+                    Mode 6 = {{ user.third_party_split_super_cookie_result }}
+                   <span style="padding-left: 20px" class="input-group-btn">
+                        <button data-toggle="modal"
+                        data-target="#mode6">Learn about this tracking mode</button>
+                        <div class="modal fade" id="mode6" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Third Party Local Storage Chained Cookie Tracking</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This tracking mode is a combination of modes 4 and 5. This mode segments the
+                                        cookie in a chained iframe within iframe manner as in mode 4, but uses
+                                        localStorage rather than traditional cookies to track the user. This is thus
+                                        similarly able to bypass Privacy Badgers cookie deletion heuristic (256 bits
+                                        restriction on localStorage which is 4 characters max).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </span>
+                </div>
                 <br>
 
                 <a href="{{ urls.CONFIG_URL }}start-benchmark"><button>Run/Rerun Benchmark</button></a>

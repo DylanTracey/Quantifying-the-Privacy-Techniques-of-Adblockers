@@ -57,7 +57,7 @@ FP_URLS = 'FP_URL_1', 'FP_URL_2', 'FP_URL_3'
 
 
 TRACKING_MODES = {
-    '1': 'first party',
+    '1': 'first party only',
     '2': 'third party single cookie',
     '3': 'third party split cookies',
     '4': 'third party chained cookies',
