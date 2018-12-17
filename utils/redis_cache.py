@@ -1,3 +1,5 @@
+import sys
+
 from settings import r
 import pickle
 
@@ -17,6 +19,10 @@ def redis_retrieve_join(ip, site):
         if curr_split is None:
             return None
         jointed_uuid += curr_split.decode('utf-8')
+    print ("hello world")
+    print(jointed_uuid)
+    sys.stdout.flush()
+
     return jointed_uuid
 
 
