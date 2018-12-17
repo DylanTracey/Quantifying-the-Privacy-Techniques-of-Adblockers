@@ -42,7 +42,7 @@ def config_switch(url, config_id):
     # Generates the history log for first party only tracking
     fp_uuid = request.cookies.get('id')
     fp_user = implicit_user_login(FirstPartyUUID, fp_uuid, config_user.first_party_cookie_size)
-    log_site_visit(FirstPartyHistory, request.url, fp_user, request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+    log_site_visit(FirstPartyHistory, request.url, fp_user, request.remote_addr)
     recent_history = generate_recent_history(FirstPartyHistory, fp_user, 10)
 
     # Sets the recently visited site for the benchmark
@@ -237,7 +237,7 @@ def fp_malicious_record(config_id):
 
     site = unquote(request.args.get('id', None))
 
-    log_site_visit(FirstPartyClickHistory, site, fp_user, request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+    log_site_visit(FirstPartyClickHistory, site, fp_user, request.remote_addr)
 
     return redirect(site)
 

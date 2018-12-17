@@ -34,7 +34,7 @@ def tp_super_cookie_data(config_id, uuid):
 
     site = unquote(request.args.get('id', None))
 
-    log_site_visit(JoinedHistory, site, trackable_user, request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+    log_site_visit(JoinedHistory, site, trackable_user, request.remote_addr)
     redis_set_benchmark_recent_site(config_id, '5', site)
 
     recent_history = generate_recent_history(JoinedHistory, trackable_user, 10)

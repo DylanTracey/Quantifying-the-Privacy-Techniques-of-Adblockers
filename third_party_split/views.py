@@ -34,7 +34,7 @@ def tp_master(config_id, index):
     :return: HTTP response for this master URL website
     """
     check_referer(request, URLS['TP_MASTER_URL'])
-    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    ip = request.remote_addr
     site = unquote(request.args.get('id', None))
 
     print("here")
@@ -47,6 +47,7 @@ def tp_master(config_id, index):
     print("woohoo")
     sys.stdout.flush()
 
+
     # Creates a cookie based on the four separate segments concatenated together.
     joined_uuid = redis_retrieve_join(ip, site)
     if joined_uuid is None:
@@ -54,6 +55,7 @@ def tp_master(config_id, index):
 
     print("uh oh")
     sys.stdout.flush()
+
 
     # Logs the visited site by the joined user (from the separate segments), and generates the history table to display
     # to manual people using the benchmark site
@@ -82,10 +84,8 @@ def tp_split_1(config_id):
     trackable_uuid_1 = SplitTrackableUUID1.get_or_create(uuid, config_cookie_length)
 
     # Logs the site visited for this segment
-    log_site_visit(SplitHistoryBase1, request.referrer, trackable_uuid_1,
-                   request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
-    redis_register_split('1', request.environ.get('HTTP_X_REAL_IP', request.remote_addr), trackable_uuid_1.uuid,
-                         request.referrer)
+    log_site_visit(SplitHistoryBase1, request.referrer, trackable_uuid_1, request.remote_addr)
+    redis_register_split('1', request.remote_addr, trackable_uuid_1.uuid, request.referrer)
 
     # Make a URL safe encoding of the site visited
     safe_referer = quote(request.referrer)
@@ -113,10 +113,8 @@ def tp_split_2(config_id):
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_2 = SplitTrackableUUID2.get_or_create(uuid, config_cookie_length)
 
-    log_site_visit(SplitHistoryBase2, request.referrer, trackable_uuid_2,
-                   request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
-    redis_register_split('2', request.environ.get('HTTP_X_REAL_IP', request.remote_addr), trackable_uuid_2.uuid,
-                         request.referrer)
+    log_site_visit(SplitHistoryBase2, request.referrer, trackable_uuid_2, request.remote_addr)
+    redis_register_split('2', request.remote_addr, trackable_uuid_2.uuid, request.referrer)
 
     safe_referer = quote(request.referrer)
 
@@ -142,10 +140,8 @@ def tp_split_3(config_id):
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_3 = SplitTrackableUUID3.get_or_create(uuid, config_cookie_length)
 
-    log_site_visit(SplitHistoryBase3, request.referrer, trackable_uuid_3,
-                   request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
-    redis_register_split('3', request.environ.get('HTTP_X_REAL_IP', request.remote_addr), trackable_uuid_3.uuid,
-                         request.referrer)
+    log_site_visit(SplitHistoryBase3, request.referrer, trackable_uuid_3, request.remote_addr)
+    redis_register_split('3', request.remote_addr, trackable_uuid_3.uuid, request.referrer)
 
     safe_referer = quote(request.referrer)
 
@@ -171,10 +167,8 @@ def tp_split_4(config_id):
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_4 = SplitTrackableUUID4.get_or_create(uuid, config_cookie_length)
 
-    log_site_visit(SplitHistoryBase4, request.referrer, trackable_uuid_4,
-                   request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
-    redis_register_split('4', request.environ.get('HTTP_X_REAL_IP', request.remote_addr), trackable_uuid_4.uuid,
-                         request.referrer)
+    log_site_visit(SplitHistoryBase4, request.referrer, trackable_uuid_4, request.remote_addr)
+    redis_register_split('4', request.remote_addr, trackable_uuid_4.uuid, request.referrer)
 
     safe_referer = quote(request.referrer)
 
