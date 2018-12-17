@@ -1,4 +1,3 @@
-import sys
 import time
 
 from urllib.parse import quote, unquote
@@ -37,25 +36,14 @@ def tp_master(config_id, index):
     ip = request.access_route[0]
     site = unquote(request.args.get('id', None))
 
-    print("here")
-    sys.stdout.flush()
-
     # Doesn't render this history view template until the other segments of the cookie (index 1-3) are loaded.
     if index != '4':
         return render_template(THIRD_PARTY_MASTER_TEMPLATE)
-
-    print("woohoo")
-    sys.stdout.flush()
-
 
     # Creates a cookie based on the four separate segments concatenated together.
     joined_uuid = redis_retrieve_join(ip, site)
     if joined_uuid is None:
         return render_template(THIRD_PARTY_MASTER_TEMPLATE)
-
-    print("uh oh")
-    sys.stdout.flush()
-
 
     # Logs the visited site by the joined user (from the separate segments), and generates the history table to display
     # to manual people using the benchmark site
