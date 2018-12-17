@@ -34,5 +34,5 @@ class BaseHistory(db.Model):
     __abstract__ = True
     id = db.Column(db.Integer, primary_key=True)
     site = db.Column(db.String(URL_MAX_LENGTH))
-    ip = db.Column(db.String(128))
+    ip = db.Column(db.String(URL_MAX_LENGTH))
     timestamp = db.Column(db.TIMESTAMP, default=datetime.utcnow)
