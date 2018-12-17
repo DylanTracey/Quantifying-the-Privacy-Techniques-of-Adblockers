@@ -30,7 +30,8 @@ def tp_single_cookie(config_id):
     trackable_user = implicit_user_login(TrackableUUID, uuid, config_cookie_length)
 
     # Generates a history log to display to a manual viewer of the site (so they can see the tracking in action)
-    log_site_visit(History, request.referrer, trackable_user, request.remote_addr)
+    log_site_visit(History, request.referrer, trackable_user,
+                   request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
     recent_history = generate_recent_history(History, trackable_user, 10)
     if uuid is not None:
         # Sets the benchmark result of the recently visited site
