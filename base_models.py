@@ -13,7 +13,7 @@ class BaseUUID(db.Model):
     __abstract__ = True
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(BASE_UUID_LENGTH), unique=True, nullable=False)
-    timestamp = db.Column(db.DATETIME, default=datetime.utcnow)
+    timestamp = db.Column(db.TIMESTAMP, default=datetime.utcnow)
 
     def isFull(self, maximum_rows):
         return self.query.count() >= maximum_rows
@@ -35,4 +35,4 @@ class BaseHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     site = db.Column(db.String(URL_MAX_LENGTH))
     ip = db.Column(db.String(32))
-    timestamp = db.Column(db.DATETIME, default=datetime.utcnow)
+    timestamp = db.Column(db.TIMESTAMP, default=datetime.utcnow)
