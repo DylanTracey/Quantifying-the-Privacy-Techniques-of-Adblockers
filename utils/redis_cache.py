@@ -5,10 +5,22 @@ import pickle
 
 
 def redis_register_split(index, ip, cookie_id, site):
+    print("set")
+    print("-----")
+    print(ip)
+    print("-----")
+    print(site)
+    sys.stdout.flush()
     r.set(index + '-' + ip + '-' + site, cookie_id, ex=10)
 
 
 def redis_retrieve_split(index, ip, site):
+    print("get")
+    print("-----")
+    print(ip)
+    print("-----")
+    print(site)
+    sys.stdout.flush()
     return r.get(index + '-' + ip + '-' + site)
 
 
