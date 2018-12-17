@@ -1,3 +1,5 @@
+import time
+
 from urllib.parse import quote, unquote
 
 from flask import Blueprint
@@ -94,6 +96,8 @@ def tp_split_2(config_id):
     check_referer(request, URLS['TP_SPLIT_URL_2'])
     config_cookie_length = implicit_user_login(User, config_id).split_cookie_size
 
+    time.sleep(0.4)
+
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_2 = SplitTrackableUUID2.get_or_create(uuid, config_cookie_length)
 
@@ -119,6 +123,8 @@ def tp_split_3(config_id):
     check_referer(request, URLS['TP_SPLIT_URL_3'])
     config_cookie_length = implicit_user_login(User, config_id).split_cookie_size
 
+    time.sleep(0.8)
+
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_3 = SplitTrackableUUID3.get_or_create(uuid, config_cookie_length)
 
@@ -143,6 +149,8 @@ def tp_split_4(config_id):
     """
     check_referer(request, URLS['TP_SPLIT_URL_4'])
     config_cookie_length = implicit_user_login(User, config_id).split_cookie_size
+
+    time.sleep(1.2)
 
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_4 = SplitTrackableUUID4.get_or_create(uuid, config_cookie_length)
