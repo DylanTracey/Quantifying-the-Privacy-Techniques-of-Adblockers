@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Terminal Full Debug",
+            "type": "python",
+            "request": "launch",
+            "program": "/Users/Dyl/Documents/End of UNI Desktop/adblock-testing-server-master/main.py",
+            "env": {
+                "FLASK_APP": "main.py",
+                "FLASK_ENV": "development",
+                "APPLICATION_CONFIGURATION": "app_config.DevConfig",
+                "REDIS_KEY": "tUGJ1oxXROkt1DPwhTNGCxqCY1hUzSVNy875THfTqkc\\=",
+                "PYTHONUNBUFFERED": "1"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Flask VSC Debug",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "main.py",
+                "FLASK_ENV": "development",
+                "APPLICATION_CONFIGURATION": "app_config.DevConfig",
+                "REDIS_KEY": "tUGJ1oxXROkt1DPwhTNGCxqCY1hUzSVNy875THfTqkc\\=",
+                "PYTHONUNBUFFERED": "1"
+            },
+            "args": [
+                "run",
+            ],
+            "jinja": true
+        },
+    ]
+}
