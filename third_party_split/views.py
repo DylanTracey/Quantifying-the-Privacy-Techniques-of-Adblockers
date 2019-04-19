@@ -1,6 +1,6 @@
 import time
 
-from urllib.parse import quote, unquote
+from urllib.parse import unquote
 
 from flask import Blueprint
 from flask import request, render_template, make_response
@@ -75,12 +75,9 @@ def tp_split_1(config_id):
     log_site_visit(SplitHistoryBase1, request.referrer, trackable_uuid_1, request.access_route[0])
     redis_register_split('1', request.access_route[0], trackable_uuid_1.uuid, request.referrer)
 
-    # Make a URL safe encoding of the site visited
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SPLIT_TEMPLATE, current_url=request.url_root, urls=URLS, cookie_id=uuid,
-                        safe_referer=safe_referer, index=1, config_id=config_id))
+                        safe_referer=request.referrer, index=1, config_id=config_id))
     # Sets a cookie for this segment if not done before
     if uuid is None:
         response = append_cookies(response, 'id', trackable_uuid_1.uuid)
@@ -104,11 +101,9 @@ def tp_split_2(config_id):
     log_site_visit(SplitHistoryBase2, request.referrer, trackable_uuid_2, request.access_route[0])
     redis_register_split('2', request.access_route[0], trackable_uuid_2.uuid, request.referrer)
 
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SPLIT_TEMPLATE, current_url=request.url_root, urls=URLS, cookie_id=uuid,
-                        safe_referer=safe_referer, index=2, config_id=config_id))
+                        safe_referer=request.referrer, index=2, config_id=config_id))
     if uuid is None:
         response = append_cookies(response, 'id', trackable_uuid_2.uuid)
     return response
@@ -131,11 +126,9 @@ def tp_split_3(config_id):
     log_site_visit(SplitHistoryBase3, request.referrer, trackable_uuid_3, request.access_route[0])
     redis_register_split('3', request.access_route[0], trackable_uuid_3.uuid, request.referrer)
 
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SPLIT_TEMPLATE, current_url=request.url_root, urls=URLS, cookie_id=uuid,
-                        safe_referer=safe_referer, index=3, config_id=config_id))
+                        safe_referer=request.referrer, index=3, config_id=config_id))
     if uuid is None:
         response = append_cookies(response, 'id', trackable_uuid_3.uuid)
     return response
@@ -158,11 +151,9 @@ def tp_split_4(config_id):
     log_site_visit(SplitHistoryBase4, request.referrer, trackable_uuid_4, request.access_route[0])
     redis_register_split('4', request.access_route[0], trackable_uuid_4.uuid, request.referrer)
 
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SPLIT_TEMPLATE, current_url=request.url_root, urls=URLS, cookie_id=uuid,
-                        safe_referer=safe_referer, index=4, config_id=config_id))
+                        safe_referer=request.referrer, index=4, config_id=config_id))
     if uuid is None:
         response = append_cookies(response, 'id', trackable_uuid_4.uuid)
     return response
@@ -180,11 +171,9 @@ def tp_split_chain_1(config_id):
     uuid = get_uuid_from_cookies(request, 'id', config_cookie_length)
     trackable_uuid_1 = SplitTrackableUUID1.get_or_create(uuid, config_cookie_length)
 
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SPLIT_CHAIN_TEMPLATE, current_url=request.url_root, urls=URLS, cookie_id=uuid,
-                        safe_referer=safe_referer, index=1, combined_id=uuid, config_id=config_id))
+                        safe_referer=request.referrer, index=1, combined_id=uuid, config_id=config_id))
     if uuid is None:
         response = append_cookies(response, 'id', trackable_uuid_1.uuid)
     return response

@@ -1,4 +1,4 @@
-from urllib.parse import quote, unquote
+from urllib.parse import unquote
 
 from flask import Blueprint
 from flask import request, render_template, make_response
@@ -59,11 +59,9 @@ def tp_super_cookie(config_id):
     # The site to redirect to.
     next_site = URLS['TP_SUPER_COOKIE_URL'] + 'tp-super-cookie-data/' + config_id
 
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SUPER_COOKIE_TEMPLATE, current_url=request.url_root, next_site=next_site,
-                        safe_referer=safe_referer, config_cookie_length=config_cookie_length))
+                        safe_referer=request.referrer, config_cookie_length=config_cookie_length))
     return response
 
 # The functions below combines the chained views in third_party_split package, and the two view functions above to
@@ -90,12 +88,10 @@ def tp_split_super_chain_1(config_id):
 
     next_site = URLS['TP_SPLIT_SUPER_URL_1'] + 'tp-split-super-chain-1-data/' + config_id
 
-    safe_referer = quote(request.referrer)
-
     response = make_response(
         render_template(THIRD_PARTY_SPLIT_CHAIN_SUPER_COOKIE_TEMPLATE, current_url=request.url_root,
                         next_site=next_site,
-                        safe_referer=safe_referer, config_cookie_length=config_cookie_length, combined_id=""))
+                        safe_referer=request.referrer, config_cookie_length=config_cookie_length, combined_id=""))
     return response
 
 

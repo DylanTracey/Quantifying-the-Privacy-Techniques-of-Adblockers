@@ -20,7 +20,7 @@
                         text += possible.charAt(Math.floor(Math.random() * possible.length));
                     localStorage.setItem("u", text);
                 }
-                var next_site = '{{ next_site }}/' + '{{ combined_id }}' + localStorage.getItem("u") + '/safe-referer?id=' + '{{ safe_referer }}';
+                var next_site = '{{ next_site }}/' + '{{ combined_id }}' + localStorage.getItem("u") + '/safe-referer?id=' + '{{ safe_referer | quote }}';
                 setTimeout(function () {
                     window.location = next_site;
                 }, 100);

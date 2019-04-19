@@ -16,31 +16,31 @@
     <br>
     {% if index|int == 1 %}
         {% if combined_id %}
-            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_2 }}tp-split-super-chain-2/{{ config_id }}/{{ combined_id }}/safe_referer?ref={{ safe_referer }}"
+            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_2 }}tp-split-super-chain-2/{{ config_id }}/{{ combined_id }}/safe_referer?ref={{ safe_referer | quote }}"
                     style="position: absolute; height: 80%; width: 90%; top: 10%; left: 5%;">
             </iframe>
         {% else %}
-            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_2 }}tp-split-super-chain-2/{{ config_id }}/None/safe_referer?ref={{ safe_referer }}"
+            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_2 }}tp-split-super-chain-2/{{ config_id }}/None/safe_referer?ref={{ safe_referer | quote }}"
                     style="position: absolute; height: 80%; width: 90%; top: 10%; left: 5%;">
             </iframe>
         {% endif %}
     {% elif index|int == 2 %}
         {% if combined_id %}
-            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_3 }}tp-split-super-chain-3/{{ config_id }}/{{ combined_id }}/safe_referer?ref={{ safe_referer }}"
+            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_3 }}tp-split-super-chain-3/{{ config_id }}/{{ combined_id }}/safe_referer?ref={{ safe_referer | quote }}"
                     style="position: absolute; height: 80%; width: 90%; top: 10%; left: 5%;">
             </iframe>
         {% else %}
-            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_3 }}tp-split-super-chain-3/{{ config_id }}/None/safe_referer?ref={{ safe_referer }}"
+            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_3 }}tp-split-super-chain-3/{{ config_id }}/None/safe_referer?ref={{ safe_referer | quote }}"
                     style="position: absolute; height: 80%; width: 90%; top: 10%; left: 5%;">
             </iframe>
         {% endif %}
     {% elif index|int == 3 %}
         {% if combined_id %}
-            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_4 }}tp-split-super-chain-master/{{ config_id }}/{{ combined_id }}/safe_referer?ref={{ safe_referer }}"
+            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_4 }}tp-split-super-chain-master/{{ config_id }}/{{ combined_id }}/safe_referer?ref={{ safe_referer | quote }}"
                     style="position: absolute; height: 80%; width: 90%; top: 10%; left: 5%;">
             </iframe>
         {% else %}
-            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_4 }}tp-split-super-chain-master/{{ config_id }}/None/safe_referer?ref={{ safe_referer }}"
+            <iframe src="{{ urls.TP_SPLIT_SUPER_URL_4 }}tp-split-super-chain-master/{{ config_id }}/None/safe_referer?ref={{ safe_referer | quote }}"
                     style="position: absolute; height: 80%; width: 90%; top: 10%; left: 5%;">
             </iframe>
         {% endif %}
