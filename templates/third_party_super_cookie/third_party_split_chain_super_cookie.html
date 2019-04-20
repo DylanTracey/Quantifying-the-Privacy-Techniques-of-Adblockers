@@ -9,23 +9,9 @@
 {% block body %}
     <br>
     <div class="container">
-        <script type="text/javascript">
-            window.onload = function () {
-                test = localStorage.getItem("u");
-                if (test === null) {
-                    var possible = "0123456789";
-                    var text = "";
-                    for (var i = 0; i < {{ config_cookie_length }}; i++)
-                        {#  https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript   #}
-                        text += possible.charAt(Math.floor(Math.random() * possible.length));
-                    localStorage.setItem("u", text);
-                }
-                var next_site = '{{ next_site }}/' + '{{ combined_id }}' + localStorage.getItem("u") + '/safe-referer?id=' + '{{ safe_referer | quote }}';
-                setTimeout(function () {
-                    window.location = next_site;
-                }, 100);
-            };
-        </script>
-    <h1>EVIL REDIRECT (can be ajax call)</h1>
+        <script id="tracker" src="{{ url_for('static', filename='client_side_tracker.js') }}"
+        data-cookie-length="{{ config_cookie_length }}" data-next-site="{{ next_site }}" 
+        data-safe_referer="{{ safe_referer | quote }}" data-combined-id="{{ combined_id }}"></script>
+        <h1>EVIL REDIRECT (can be ajax call)</h1>
     </div>
 {% endblock %}
