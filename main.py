@@ -1,4 +1,3 @@
-# pylint: disable=no-member
 from flask import Flask
 from flask import request, redirect, url_for
 import os
