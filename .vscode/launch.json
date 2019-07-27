@@ -32,6 +32,7 @@
             },
             "args": [
                 "run",
+                "--no-reload",
             ],
             "jinja": true
         },
