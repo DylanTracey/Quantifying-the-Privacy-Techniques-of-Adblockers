@@ -39,6 +39,8 @@ def entry():
         return redirect(url_for('fp.fp_3'))
     if request.url_root == URLS['CONFIG_URL']:
         return redirect(url_for('config.config_checkbox'))
+    #hacky solution to change
+    return redirect(URLS['CONFIG_URL'] + '/config')
 
 
 if __name__ == '__main__':
