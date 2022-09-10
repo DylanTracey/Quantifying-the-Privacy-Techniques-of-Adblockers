@@ -8,7 +8,7 @@
             "name": "Python: Terminal Full Debug",
             "type": "python",
             "request": "launch",
-            "program": "/Users/Dyl/Documents/End of UNI Desktop/adblock-testing-server-master/main.py",
+            "program": "/Users/dylantracey/Documents/Websites/Quantifying-the-Privacy-Techniques-of-Adblockers/main.py",
             "env": {
                 "FLASK_APP": "main.py",
                 "FLASK_ENV": "development",

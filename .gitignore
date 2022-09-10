@@ -93,3 +93,10 @@ ENV/
 
 # Database
 *.db
+
+#latest v environment
+.venv
+final_env/
+
+#mac files
+.DS_Store
