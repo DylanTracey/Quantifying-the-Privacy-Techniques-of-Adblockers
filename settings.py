@@ -49,7 +49,7 @@ URLS = {
     'TP_SPLIT_SUPER_URL_4': 'http://third-party-tracker-split-super-4.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-super-4:5000/',
 
-    'CONFIG_URL': 'www.adblocktesterconfig.tk/' if DEBUG is False else 'http://local.adblocktesterconfig:5000/'
+    'CONFIG_URL': 'http://adblocktesterconfig.tk/' if DEBUG is False else 'http://local.adblocktesterconfig:5000/'
 }
 
 FP_URLS = 'FP_URL_1', 'FP_URL_2', 'FP_URL_3'
