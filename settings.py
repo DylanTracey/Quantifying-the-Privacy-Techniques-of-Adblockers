@@ -11,45 +11,45 @@ r = redis.from_url(os.environ.get("REDIS_URL")) if DEBUG is False else redis.Red
 
 # Sets up the correct URLs to use based on a debugging local environment, or the live website
 URLS = {
-    'FP_URL_1': 'http://www.adblocktester1.tk/' if DEBUG is False else 'http://local.adblocktester1:5000/',
-    'FP_URL_2': 'http://www.adblocktester2.tk/' if DEBUG is False else 'http://local.adblocktester2:5000/',
-    'FP_URL_3': 'http://www.adblocktester3.tk/' if DEBUG is False else 'http://local.adblocktester3:5000/',
+    'FP_URL_1': 'https://www.adblocktester1.tk/' if DEBUG is False else 'http://local.adblocktester1:5000/',
+    'FP_URL_2': 'https://www.adblocktester2.tk/' if DEBUG is False else 'http://local.adblocktester2:5000/',
+    'FP_URL_3': 'https://www.adblocktester3.tk/' if DEBUG is False else 'http://local.adblocktester3:5000/',
 
-    'FP_URL_MALICIOUS_1': 'http://www.adblocktestermalicious1.tk/' if DEBUG is False
+    'FP_URL_MALICIOUS_1': 'https://www.adblocktestermalicious1.tk/' if DEBUG is False
     else 'http://local.adblocktestermalicious1:5000/',
-    'FP_URL_MALICIOUS_2': 'http://www.adblocktestermalicious2.tk/' if DEBUG is False
+    'FP_URL_MALICIOUS_2': 'https://www.adblocktestermalicious2.tk/' if DEBUG is False
     else 'http://local.adblocktestermalicious2:5000/',
-    'FP_URL_MALICIOUS_3': 'http://www.adblocktestermalicious3.tk/' if DEBUG is False
+    'FP_URL_MALICIOUS_3': 'https://www.adblocktestermalicious3.tk/' if DEBUG is False
     else 'http://local.adblocktestermalicious3:5000/',
 
-    'TP_URL': 'http://www.third-party-tracker-single-cookie.tk/' if DEBUG is False
+    'TP_URL': 'https://www.third-party-tracker-single-cookie.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-single-cookie:5000/',
 
-    'TP_SPLIT_URL_1': 'http://www.third-party-tracker-split-1.tk/' if DEBUG is False
+    'TP_SPLIT_URL_1': 'https://www.third-party-tracker-split-1.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-1:5000/',
-    'TP_SPLIT_URL_2': 'http://www.third-party-tracker-split-2.tk/' if DEBUG is False
+    'TP_SPLIT_URL_2': 'https://www.third-party-tracker-split-2.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-2:5000/',
-    'TP_SPLIT_URL_3': 'http://www.third-party-tracker-split-3.tk/' if DEBUG is False
+    'TP_SPLIT_URL_3': 'https://www.third-party-tracker-split-3.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-3:5000/',
-    'TP_SPLIT_URL_4': 'http://www.third-party-tracker-split-4.tk/' if DEBUG is False
+    'TP_SPLIT_URL_4': 'https://www.third-party-tracker-split-4.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-4:5000/',
 
-    'TP_MASTER_URL': 'http://www.third-party-tracker-master-join.tk/' if DEBUG is False
+    'TP_MASTER_URL': 'https://www.third-party-tracker-master-join.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-master-join:5000/',
 
-    'TP_SUPER_COOKIE_URL': 'http://www.third-party-tracker-super-cookie.tk/' if DEBUG is False
+    'TP_SUPER_COOKIE_URL': 'https://www.third-party-tracker-super-cookie.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-super-cookie:5000/',
 
-    'TP_SPLIT_SUPER_URL_1': 'http://www.third-party-tracker-split-super-1.tk/' if DEBUG is False
+    'TP_SPLIT_SUPER_URL_1': 'https://www.third-party-tracker-split-super-1.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-super-1:5000/',
-    'TP_SPLIT_SUPER_URL_2': 'http://www.third-party-tracker-split-super-2.tk/' if DEBUG is False
+    'TP_SPLIT_SUPER_URL_2': 'https://www.third-party-tracker-split-super-2.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-super-2:5000/',
-    'TP_SPLIT_SUPER_URL_3': 'http://www.third-party-tracker-split-super-3.tk/' if DEBUG is False
+    'TP_SPLIT_SUPER_URL_3': 'https://www.third-party-tracker-split-super-3.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-super-3:5000/',
-    'TP_SPLIT_SUPER_URL_4': 'http://www.third-party-tracker-split-super-4.tk/' if DEBUG is False
+    'TP_SPLIT_SUPER_URL_4': 'https://www.third-party-tracker-split-super-4.tk/' if DEBUG is False
     else 'http://local.third-party-tracker-split-super-4:5000/',
 
-    'CONFIG_URL': 'http://www.adblocktesterconfig.tk/' if DEBUG is False else 'http://local.adblocktesterconfig:5000/'
+    'CONFIG_URL': 'https://www.adblocktesterconfig.tk/' if DEBUG is False else 'http://local.adblocktesterconfig:5000/'
 }
 
 FP_URLS = 'FP_URL_1', 'FP_URL_2', 'FP_URL_3'
