@@ -4,6 +4,8 @@ This is a web application that contains deliberately malicious tracking techniqu
 
 To read the final report and where/how use the website, download the pdf https://github.com/DylanTracey/Quantifying-the-Privacy-Techniques-of-Adblockers/raw/master/FinalReport.pdf
 
+Use the website with this link: https://www.adblocktesterconfig.tk/config
+
 In total there are seven different tracking techniques tested currently.
 
 These include:
