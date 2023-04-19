@@ -97,7 +97,7 @@ def benchmark_update_result(config_id, mode):
         update_result(user, mode, 'FAILURE!')
     else:
         result = result_bytes.decode("utf-8")
-        correct_url = URLS['FP_URL_1'] + 'fp-1/' + config_id
+        correct_url = URLS['FP_URL_1'] + 'fp-1/'
 
         # Checks that the recently visited site is the correct one.
         if result == correct_url:
