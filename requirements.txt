@@ -25,7 +25,7 @@ pylint-flask==0.6
 pylint-flask-sqlalchemy==0.2.0
 pylint-plugin-utils==0.7
 pyparsing==3.0.9
-redis==4.3.4
+redis==4.4.4
 six==1.16.0
 SQLAlchemy==1.4.41
 tomli==2.0.1
